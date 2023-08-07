@@ -11,7 +11,7 @@
     <h4>Resume > New</h4>
 
     @if ($errors->any())
-        <div>
+        <div class="container">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -29,7 +29,7 @@
         <table>
             <tr class="container">
                 <td class="container"><label for="username"><strong>Username</strong></label></td>
-                <td><input type="text" name="username" id="username" placeholder="Enter unique username"></td>
+                <td><input type="text" name="username" id="username"></td>
             </tr>
         </table>
         <br><br>
@@ -39,22 +39,26 @@
         <table id="education-table">
             <thead>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <div class="container">
                             <button type="button" onclick="addEducationRow()">Add Education</button>
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr class="container">
                     <th>Institution</th>
                     <th>Degree</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="container"><input type="text" name="institution[]" placeholder="Enter institution">
+                <tr class="container">
+                    <td class="container"><input type="text" name="institution[]">
                     </td>
-                    <td class="container"><input type="text" name="degree[]" placeholder="Enter degree"></td>
+                    <td class="container"><input type="text" name="degree[]"></td>
+                    <td>
+                        <button type="button" onclick="deleteRow(this)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -65,7 +69,7 @@
         <table id="experience-table">
             <thead>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <div class="container">
                             <button type="button" onclick="addExperienceRow()">Add Experience</button>
                         </div>
@@ -74,12 +78,16 @@
                 <tr>
                     <th>Company</th>
                     <th>Position</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="container"><input type="text" name="company[]" placeholder="Enter company"></td>
-                    <td class="container"><input type="text" name="position[]" placeholder="Enter position"></td>
+                <tr class="container">
+                    <td class="container"><input type="text" name="company[]"></td>
+                    <td class="container"><input type="text" name="position[]"></td>
+                    <td>
+                        <button type="button" onclick="deleteRow(this)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -95,8 +103,9 @@
             const educationTable = document.querySelector("#education-table tbody");
             const newRow = document.createElement("tr");
             newRow.innerHTML = `
-            <td class="container"><input type="text" name="institution[]" placeholder="Enter institution"></td>
-            <td class="container"><input type="text" name="degree[]" placeholder="Enter degree"></td>
+            <td class="container"><input type="text" name="institution[]"></td>
+            <td class="container"><input type="text" name="degree[]"></td>
+            <td class="container"><button type="button" onclick="deleteRow(this)">Delete</button></td>
         `;
             educationTable.appendChild(newRow);
         }
@@ -105,10 +114,16 @@
             const experienceTable = document.querySelector("#experience-table tbody");
             const newRow = document.createElement("tr");
             newRow.innerHTML = `
-            <td class="container"><input type="text" name="company[]" placeholder="Enter company"></td>
-            <td class="container"><input type="text" name="position[]" placeholder="Enter position"></td>
+            <td class="container"><input type="text" name="company[]"></td>
+            <td class="container"><input type="text" name="position[]"></td>
+            <td class="container"><button type="button" onclick="deleteRow(this)">Delete</button></td>
         `;
             experienceTable.appendChild(newRow);
+        }
+
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
         }
     </script>
 

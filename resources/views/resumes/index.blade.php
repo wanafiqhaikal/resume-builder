@@ -11,8 +11,9 @@
     <h4>Resume > List</h4>
 
     @if (session('success'))
-        <div>{{ session('success') }}</div>
+        <div class="container">{{ session('success') }}</div>
     @endif
+
     <br><br>
 
     <div class="container">
@@ -47,7 +48,8 @@
                                     type="button">View</button></a>
                         </td>
                         <td>
-                            <a href="{{ route('resumes.edit', $resume->username) }}"><button type="button">Edit</button></a>
+                            <a href="{{ route('resumes.edit', $resume->username) }}"><button
+                                    type="button">Edit</button></a>
                         </td>
                         <td>{{ $resume->id }}</td>
                         <td>{{ $resume->username }}</td>

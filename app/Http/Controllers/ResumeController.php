@@ -94,25 +94,25 @@ class ResumeController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         // Find the specific Resume by its primary key
         $resume = Resume::findOrFail($id);
 
         // Update or Create Education
         if ($request->has('education')) {
             foreach ($request->input('education') as $educationData) {
-                // dd(empty($educationData['id']));
                 if (!empty($educationData['id'])) {
-                    $education = Education::firstOrNew(['id' => $educationData['id']]);
-                    $education->resume_id = $resume->id;
-                    $education->institution = $educationData['institution'];
-                    $education->degree = $educationData['degree'];
-                    $education->save();
+                    $education = Education::findOrFail($educationData['id']);
+                    $education->update([
+                        'institution' => $educationData['institution'],
+                        'degree' => $educationData['degree'],
+                    ]);
                 } else {
-                    $education = new Education();
-                    $education->resume_id = $resume->id;
-                    $education->institution = $educationData['institution'];
-                    $education->degree = $educationData['degree'];
-                    $education->save();
+                    $education = new Education([
+                        'institution' => $educationData['institution'],
+                        'degree' => $educationData['degree'],
+                    ]);
+                    $resume->educations()->save($education);
                 }
             }
         }
@@ -121,17 +121,35 @@ class ResumeController extends Controller
         if ($request->has('experience')) {
             foreach ($request->input('experience') as $experienceData) {
                 if (!empty($experienceData['id'])) {
-                    $experience = WorkExperience::firstOrNew(['id' => $experienceData['id']]);
-                    $experience->resume_id = $resume->id;
-                    $experience->company = $experienceData['company'];
-                    $experience->position = $experienceData['position'];
-                    $experience->save();
+                    $experience = WorkExperience::findOrFail($experienceData['id']);
+                    $experience->update([
+                        'company' => $experienceData['company'],
+                        'position' => $experienceData['position'],
+                    ]);
                 } else {
-                    $experience = new WorkExperience();
-                    $experience->resume_id = $resume->id;
-                    $experience->company = $experienceData['company'];
-                    $experience->position = $experienceData['position'];
-                    $experience->save();
+                    $experience = new WorkExperience([
+                        'company' => $experienceData['company'],
+                        'position' => $experienceData['position'],
+                    ]);
+                    $resume->workExperiences()->save($experience);
+                }
+            }
+        }
+
+        // Delete Education records
+        if ($request->has('deleted_education_ids')) {
+            foreach ($request->input('deleted_education_ids') as $deletedEducationId) {
+                if (!in_array($deletedEducationId, array_column($request->input('education'), 'id'))) {
+                    Education::where('id', $deletedEducationId)->delete();
+                }
+            }
+        }
+
+        // Delete Experience records
+        if ($request->has('deleted_experience_ids')) {
+            foreach ($request->input('deleted_experience_ids') as $deletedExperienceId) {
+                if (!in_array($deletedExperienceId, array_column($request->input('experience'), 'id'))) {
+                    WorkExperience::where('id', $deletedExperienceId)->delete();
                 }
             }
         }
