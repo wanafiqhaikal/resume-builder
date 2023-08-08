@@ -25,14 +25,15 @@
     <br><br><br>
 
     <h3 class="container">Create New Resume</h3>
+    <br>
     <form method="post" action="{{ route('resumes.store') }}" onsubmit="return confirm('Are you sure you want to save this resume?');">
         @csrf
         <!-- Username Table -->
         <h3 class="container">Username</h3>
         <table>
             <tr class="container">
-                <td class="container"><label for="username"><strong>Username</strong></label></td>
-                <td><input type="text" name="username" id="username"></td>
+                <td><label for="username"><strong>Username</strong></label></td>
+                <td><input type="text" name="username" id="username" class="form-control" required></td>
             </tr>
         </table>
         <br><br>
@@ -56,9 +57,9 @@
             </thead>
             <tbody>
                 <tr class="container">
-                    <td class="container"><input type="text" name="institution[]">
+                    <td><input type="text" name="institution[]" class="form-control" required>
                     </td>
-                    <td class="container"><input type="text" name="degree[]"></td>
+                    <td><input type="text" name="degree[]" class="form-control" required></td>
                     <td>
                         <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                     </td>
@@ -86,8 +87,8 @@
             </thead>
             <tbody>
                 <tr class="container">
-                    <td class="container"><input type="text" name="company[]"></td>
-                    <td class="container"><input type="text" name="position[]"></td>
+                    <td><input type="text" name="company[]" class="form-control" required></td>
+                    <td><input type="text" name="position[]" class="form-control" required></td>
                     <td>
                         <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                     </td>
@@ -106,10 +107,11 @@
         function addEducationRow() {
             const educationTable = document.querySelector("#education-table tbody");
             const newRow = document.createElement("tr");
+            newRow.className = "container";
             newRow.innerHTML = `
-            <td class="container"><input type="text" name="institution[]"></td>
-            <td class="container"><input type="text" name="degree[]"></td>
-            <td class="container"><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
+            <td><input type="text" name="institution[]" class="form-control"></td>
+            <td><input type="text" name="degree[]" class="form-control"></td>
+            <td><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
         `;
             educationTable.appendChild(newRow);
         }
@@ -117,10 +119,11 @@
         function addExperienceRow() {
             const experienceTable = document.querySelector("#experience-table tbody");
             const newRow = document.createElement("tr");
+            newRow.className = "container";
             newRow.innerHTML = `
-            <td class="container"><input type="text" name="company[]"></td>
-            <td class="container"><input type="text" name="position[]"></td>
-            <td class="container"><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
+            <td><input type="text" name="company[]" class="form-control"></td>
+            <td><input type="text" name="position[]" class="form-control"></td>
+            <td><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
         `;
             experienceTable.appendChild(newRow);
         }

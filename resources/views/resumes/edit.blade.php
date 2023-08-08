@@ -58,11 +58,11 @@
                         </td>
                         <td>
                             <input type="text" name="education[{{ $index }}][institution]"
-                                value="{{ $education->institution }}" required>
+                                value="{{ $education->institution }}" class="form-control" required>
                         </td>
                         <td>
                             <input type="text" name="education[{{ $index }}][degree]"
-                                value="{{ $education->degree }}" required>
+                                value="{{ $education->degree }}" class="form-control" required>
                         </td>
                         <td>
                             <button type="button" onclick="deleteRow(this, 'education')" class="btn btn-danger">Delete</button>
@@ -102,11 +102,11 @@
                         </td>
                         <td>
                             <input type="text" name="experience[{{ $index }}][company]"
-                                value="{{ $experience->company }}" required>
+                                value="{{ $experience->company }}" class="form-control" required>
                         </td>
                         <td>
                             <input type="text" name="experience[{{ $index }}][position]"
-                                value="{{ $experience->position }}" required>
+                                value="{{ $experience->position }}" class="form-control" required>
                         </td>
                         <td>
                             <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
@@ -131,15 +131,16 @@
         function addEducationRow() {
             var table = document.getElementById("education_table");
             var row = table.insertRow();
+            row.className = "container";
             row.innerHTML = `
                 <td></td>
-                <td class="container">
-                    <input type="text" name="education[${educationIndex}][institution]" required>
+                <td>
+                    <input type="text" name="education[${educationIndex}][institution]" class="form-control" required>
                 </td>
-                <td class="container">
-                    <input type="text" name="education[${educationIndex}][degree]" required>
+                <td>
+                    <input type="text" name="education[${educationIndex}][degree]" class="form-control" required>
                 </td>
-                <td class="container">
+                <td>
                     <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                 </td>
             `;
@@ -149,15 +150,16 @@
         function addExperienceRow() {
             var table = document.getElementById("experience_table");
             var row = table.insertRow();
+            row.className = "container";
             row.innerHTML = `
                 <td></td>
-                <td class="container">
-                    <input type="text" name="experience[${experienceIndex}][company]" required>
+                <td>
+                    <input type="text" name="experience[${experienceIndex}][company]" class="form-control" required>
                 </td>
-                <td class="container">
-                    <input type="text" name="experience[${experienceIndex}][position]" required>
+                <td>
+                    <input type="text" name="experience[${experienceIndex}][position]" class="form-control" required>
                 </td>
-                <td class="container">
+                <td>
                     <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                 </td>
             `;
