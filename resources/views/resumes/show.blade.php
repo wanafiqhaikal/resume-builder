@@ -5,10 +5,13 @@
     <title>Resume Details | Resume Builder</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @include('header')
+    <div class="breadcrumb custom-breadcrumb">
+        <a class="breadcrumb-item" href="{{ route('resumes.index') }}">Home</a>
+        <span class="breadcrumb-item">View</span>
+    </div>
 </head>
 
 <body>
-    <h4>Resume > View</h4>
 
     <br><br>
     <h3 class="container"><strong>RESUME</strong></h3>
@@ -90,7 +93,7 @@
     <br><br>
 
     <div class="container">
-        <a href="{{ route('resumes.index') }}"><button type="button">Back to List</button></a>
+        <a href="{{ route('resumes.index') }}"><button type="button" class="btn btn-secondary">Back to List</button></a>
     </div>
 </body>
 @include('footer')

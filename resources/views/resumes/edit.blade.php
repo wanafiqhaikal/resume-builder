@@ -5,10 +5,13 @@
     <title>Edit Resume | Resume Builder</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @include('header')
+    <div class="breadcrumb custom-breadcrumb">
+        <a class="breadcrumb-item" href="{{ route('resumes.index') }}">Home</a>
+        <span class="breadcrumb-item">Edit</span>
+    </div>
 </head>
 
 <body>
-    <h4>Resume > Edit</h4>
 
     <br><br>
     <h3 class="container">Edit Resume</h3>
@@ -34,7 +37,7 @@
                 <tr>
                     <td colspan="4">
                         <div class="container">
-                            <button type="button" onclick="addEducationRow()">Add Education</button>
+                            <button type="button" onclick="addEducationRow()" class="btn btn-primary">Add Education</button>
                         </div>
                     </td>
                 </tr>
@@ -62,7 +65,7 @@
                                 value="{{ $education->degree }}" required>
                         </td>
                         <td>
-                            <button type="button" onclick="deleteRow(this, 'education')">Delete</button>
+                            <button type="button" onclick="deleteRow(this, 'education')" class="btn btn-danger">Delete</button>
                         </td>
 
                     </tr>
@@ -78,7 +81,7 @@
                 <tr>
                     <td colspan="4">
                         <div>
-                            <button type="button" onclick="addExperienceRow()">Add Experience</button>
+                            <button type="button" onclick="addExperienceRow()" class="btn btn-primary">Add Experience</button>
                         </div>
                     </td>
                 </tr>
@@ -106,7 +109,7 @@
                                 value="{{ $experience->position }}" required>
                         </td>
                         <td>
-                            <button type="button" onclick="deleteRow(this)">Delete</button>
+                            <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                 @endforeach
@@ -115,8 +118,8 @@
         <br><br>
 
         <div class="container">
-            <button type="submit">Update Resume</button>
-            <a href="{{ route('resumes.index') }}"><button type="button">Cancel</button></a>
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="{{ route('resumes.index') }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
         </div>
         <br>
     </form>
@@ -137,7 +140,7 @@
                     <input type="text" name="education[${educationIndex}][degree]" required>
                 </td>
                 <td class="container">
-                    <button type="button" onclick="deleteRow(this)">Delete</button>
+                    <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                 </td>
             `;
             educationIndex++;
@@ -155,7 +158,7 @@
                     <input type="text" name="experience[${experienceIndex}][position]" required>
                 </td>
                 <td class="container">
-                    <button type="button" onclick="deleteRow(this)">Delete</button>
+                    <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                 </td>
             `;
             experienceIndex++;
@@ -174,10 +177,6 @@
             }
         }
     </script>
-
-    {{-- <div class="container">
-        <a href="{{ route('resumes.index') }}"><button type="button">Cancel</button></a>
-    </div> --}}
 
 </body>
 @include('footer')

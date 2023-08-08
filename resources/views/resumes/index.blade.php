@@ -5,10 +5,13 @@
     <title>List of Resume | Resume Builder</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @include('header')
+    <div class="breadcrumb custom-breadcrumb">
+        <a class="breadcrumb-item">Home</a>
+    </div>
 </head>
 
 <body>
-    <h4>Resume > List</h4>
+    {{-- <h4>Resume > List</h4> --}}
 
     @if (session('success'))
         <div class="container">{{ session('success') }}</div>
@@ -17,14 +20,14 @@
     <br><br>
 
     <div class="container">
-        <a href="{{ route('resumes.create') }}"><button type="button">Add New</button></a>
+        <a href="{{ route('resumes.create') }}"><button type="button" class="btn btn-primary">Add New</button></a>
     </div>
     <br><br>
 
 
     <table>
         <thead>
-            <tr>
+            <tr class="container">
                 <th>View</th>
                 <th>Edit</th>
                 <th>ID</th>
@@ -45,11 +48,11 @@
                     <tr class="container">
                         <td>
                             <a href="{{ route('resumes.show', $resume->username) }}"><button
-                                    type="button">View</button></a>
+                                    type="button" class="btn btn-dark">View</button></a>
                         </td>
                         <td>
                             <a href="{{ route('resumes.edit', $resume->username) }}"><button
-                                    type="button">Edit</button></a>
+                                    type="button" class="btn btn-info">Edit</button></a>
                         </td>
                         <td>{{ $resume->id }}</td>
                         <td>{{ $resume->username }}</td>

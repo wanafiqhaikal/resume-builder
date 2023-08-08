@@ -5,10 +5,13 @@
     <title>Add New Resume | Resume Builder</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @include('header')
+    <div class="breadcrumb custom-breadcrumb">
+        <a class="breadcrumb-item" href="{{ route('resumes.index') }}">Home</a>
+        <span class="breadcrumb-item">New</span>
+    </div>
 </head>
 
 <body>
-    <h4>Resume > New</h4>
 
     @if ($errors->any())
         <div class="container">
@@ -41,7 +44,7 @@
                 <tr>
                     <td colspan="3">
                         <div class="container">
-                            <button type="button" onclick="addEducationRow()">Add Education</button>
+                            <button type="button" onclick="addEducationRow()" class="btn btn-primary">Add Education</button>
                         </div>
                     </td>
                 </tr>
@@ -57,7 +60,7 @@
                     </td>
                     <td class="container"><input type="text" name="degree[]"></td>
                     <td>
-                        <button type="button" onclick="deleteRow(this)">Delete</button>
+                        <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -71,7 +74,7 @@
                 <tr>
                     <td colspan="3">
                         <div class="container">
-                            <button type="button" onclick="addExperienceRow()">Add Experience</button>
+                            <button type="button" onclick="addExperienceRow()" class="btn btn-primary">Add Experience</button>
                         </div>
                     </td>
                 </tr>
@@ -86,7 +89,7 @@
                     <td class="container"><input type="text" name="company[]"></td>
                     <td class="container"><input type="text" name="position[]"></td>
                     <td>
-                        <button type="button" onclick="deleteRow(this)">Delete</button>
+                        <button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -94,8 +97,8 @@
         <br><br>
 
         <div class="container">
-            <button type="submit" class="btn btn-light">Save</button>
-            <a href="{{ route('resumes.index') }}"><button type="button">Back to List</button></a>
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="{{ route('resumes.index') }}"><button type="button" class="btn btn-secondary">Back to List</button></a>
         </div>
     </form>
 
@@ -106,7 +109,7 @@
             newRow.innerHTML = `
             <td class="container"><input type="text" name="institution[]"></td>
             <td class="container"><input type="text" name="degree[]"></td>
-            <td class="container"><button type="button" onclick="deleteRow(this)">Delete</button></td>
+            <td class="container"><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
         `;
             educationTable.appendChild(newRow);
         }
@@ -117,7 +120,7 @@
             newRow.innerHTML = `
             <td class="container"><input type="text" name="company[]"></td>
             <td class="container"><input type="text" name="position[]"></td>
-            <td class="container"><button type="button" onclick="deleteRow(this)">Delete</button></td>
+            <td class="container"><button type="button" onclick="deleteRow(this)" class="btn btn-danger">Delete</button></td>
         `;
             experienceTable.appendChild(newRow);
         }
