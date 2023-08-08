@@ -13,7 +13,7 @@
     <br><br>
     <h3 class="container">Edit Resume</h3>
 
-    <form action="{{ route('resumes.update', $resumes->id) }}" method="POST">
+    <form action="{{ route('resumes.update', $resumes->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to update this resume?');">
         @csrf
         @method('PUT')
 

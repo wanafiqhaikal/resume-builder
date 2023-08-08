@@ -22,7 +22,7 @@
     <br><br><br>
 
     <h3 class="container">Create New Resume</h3>
-    <form method="post" action="{{ route('resumes.store') }}">
+    <form method="post" action="{{ route('resumes.store') }}" onsubmit="return confirm('Are you sure you want to save this resume?');">
         @csrf
         <!-- Username Table -->
         <h3 class="container">Username</h3>
@@ -94,7 +94,8 @@
         <br><br>
 
         <div class="container">
-            <button type="submit">Save</button>
+            <button type="submit" class="btn btn-light">Save</button>
+            <a href="{{ route('resumes.index') }}"><button type="button">Back to List</button></a>
         </div>
     </form>
 
@@ -127,10 +128,6 @@
         }
     </script>
 
-    <br><br>
-    <div class="container">
-        <a href="{{ route('resumes.index') }}"><button type="button">Back to List</button></a>
-    </div>
 </body>
 @include('footer')
 
